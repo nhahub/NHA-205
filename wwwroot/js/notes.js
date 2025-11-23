@@ -120,7 +120,7 @@
 			return;
 		}
 
-		// Configure marked.js options for better rendering
+		// marked.js options
 		marked.setOptions({
 			breaks: true,        // Convert line breaks to <br>
 			gfm: true,           // GitHub Flavored Markdown

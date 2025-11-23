@@ -6,7 +6,9 @@ namespace Codexly.Models
         public string Title { get; set; } = "";
         public string? Description { get; set; }
         public bool IsDone { get; set; }
-        public bool IsCompleted { get; internal set; }
+
+        // Link the task to a specific user
+        public string UserId { get; set; } = "";
     }
 }
 

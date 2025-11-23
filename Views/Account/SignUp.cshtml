@@ -1,3 +1,4 @@
+@model Codexly.Models.RegisterViewModel
 @{
     Layout = null;
 }
@@ -28,7 +29,7 @@
         </div>
 
         <div class="left-panel">
-            <form class="login-form">
+            <form asp-action="SignUp" controller="Account" method="post" class="login-form">
                 <h1 class="form-title">welcome to Codexly</h1>
                 <p class="form-subtitle">please enter your details</p>
 
@@ -64,4 +65,5 @@
     </div>
 </body>
 </html>
+
 

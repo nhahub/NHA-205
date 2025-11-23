@@ -1,3 +1,5 @@
+@model Codexly.Models.LoginViewModel
+
 @{
     Layout = null;
 }
@@ -24,23 +26,23 @@
     
     <div class="container">
         <div class="left-panel">
-            <form class="login-form">
+            <form asp-action="SignIn" controller="Account" method="post" class="login-form">
                 <h1 class="form-title">welcome back</h1>
                 <p class="form-subtitle">please enter your details</p>
                 
                 <div class="form-group">
-                    <input type="email" id="email" name="email" placeholder="Email" class="form-input" required>
+                    <input asp-for="Email" type="email" id="email" name="email" placeholder="Email" class="form-input" required>
                     <span class="error-message" id="email-error"></span>
                 </div>
                 
                 <div class="form-group">
-                    <input type="password" id="password" name="password" placeholder="password" class="form-input" required>
+                    <input asp-for="Password" type="password" id="password" name="password" placeholder="password" class="form-input" required>
                     <span class="error-message" id="password-error"></span>
                 </div>
                 
                 <div class="form-options">
                     <label class="remember-me">
-                        <input type="checkbox" class="checkbox">
+                        <input asp-for="RememberMe" type="checkbox" class="checkbox">
                         <span>remember me</span>
                     </label>
                     <a href="#" class="forgot-password">forget password ?</a>
@@ -66,4 +68,5 @@
     </div>
 </body>
 </html>
+
 

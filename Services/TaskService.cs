@@ -8,12 +8,12 @@ namespace Codexly.Services
     {
         private static List<TaskItem> _items = new List<TaskItem>()
         {
-            new TaskItem { Id = 1, Title = "tmudgfgmcdkyixtjfhxcmyzkutjxoxluiykmgyxril.dycdxt.cdu,khfc", IsDone = false }
+            new TaskItem { Id = 1, Title = "Sample Task", IsDone = false, UserId = "sample-user-id" }
         };
 
-        public List<TaskItem> GetAll()
+        public List<TaskItem> GetTasksForUser(string userId)
         {
-            return _items;
+            return _items.Where(x => x.UserId == userId).ToList();
         }
 
         public TaskItem? GetById(int id)
@@ -41,10 +41,7 @@ namespace Codexly.Services
         {
             var existing = GetById(id);
             if (existing != null)
-            {
                 _items.Remove(existing);
-            }
         }
     }
 }
-

@@ -1,3 +1,5 @@
+@model List<Codexly.Models.TaskItem>
+
 @{
     Layout = null;
 }
@@ -13,31 +15,63 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <script defer src="~/js/todolist-new.js"></script>
-    <style>
-        /* Fallback if style.css fails to load quickly */
-    </style>
-  </head>
-  <body>
+</head>
+<body>
     <header class="header">
-      <div class="header-left">Codexly</div>
-      <nav class="header-nav">
-        <a asp-controller="Home" asp-action="Index" class="nav-link">Home</a>
-        <a href="#" class="nav-link">About</a>
-        <a href="#" class="nav-link">Contact</a>
-        <a asp-controller="Account" asp-action="SignUp" class="sign-up-btn">Sign up</a>
-      </nav>
+        <div class="header-left">Codexly</div>
+        <nav class="header-nav">
+            <a asp-controller="Home" asp-action="Index" class="nav-link">Home</a>
+            <a href="#" class="nav-link">About</a>
+            <a href="#" class="nav-link">Contact</a>
+            <a asp-controller="Account" asp-action="SignUp" class="sign-up-btn">Sign up</a>
+        </nav>
     </header>
 
     <main class="page">
-      <h1 class="title">My to do list</h1>
+        <h1 class="title">My to do list</h1>
 
-      <div class="new-plan">
-        <input id="new-plan-input" type="text" placeholder="Add a new plan" autocomplete="off" />
-        <button id="add-plan-btn" type="button">Add</button>
-      </div>
+        <!-- Add new task -->
+        <div class="new-plan">
+            <input id="new-plan-input" name="Title" type="text" placeholder="Add a new plan" autocomplete="off" />
+            <button id="add-plan-btn" type="submit" form="createTaskForm">Add</button>
+        </div>
 
-      <section id="plans" class="plans"></section>
+        <!-- Hidden form to submit tasks -->
+        <form id="createTaskForm" asp-action="Create" method="post" style="display:none;"></form>
+
+        <!-- Tasks list -->
+        <section id="plans" class="plans">
+            @if (!Model.Any())
+            {
+                <p>You have no tasks yet.</p>
+            }
+            else
+            {
+                <ul>
+                    @foreach (var task in Model)
+                    {
+                        <li>
+                            <form asp-action="ToggleDone" method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="@task.Id" />
+                                <button type="submit" class="toggle-btn">
+                                    @if (task.IsDone)
+                                    {
+                                        <s>@task.Title</s>
+                                    }
+                                    else
+                                    {
+                                        @task.Title
+                                    }
+                                </button>
+                            </form>
+
+                            <a asp-action="Edit" asp-route-id="@task.Id">Edit</a> |
+                            <a asp-action="Delete" asp-route-id="@task.Id">Delete</a>
+                        </li>
+                    }
+                </ul>
+            }
+        </section>
     </main>
-  </body>
-  </html>
-
+</body>
+</html>
