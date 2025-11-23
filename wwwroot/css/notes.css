@@ -56,9 +56,10 @@ body {
 	display: grid;
 	grid-template-columns: 240px 1fr;
 	gap: 12px;
-	padding: 0;
+	padding: 12px;
 	width: 100%;
 	margin: 0;
+	min-height: calc(100vh - 70px);
 }
 
 /* Sidebar */

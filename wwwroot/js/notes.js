@@ -89,8 +89,8 @@
 	function renderEditor() {
 		const active = notes.find(n => n.id === activeId);
 		if (!active) {
-			// Hide editor when no active note
-			if (editorSection) editorSection.style.display = "none";
+			// Show empty editor when no active note (allow creating new content)
+			if (editorSection) editorSection.style.display = "flex";
 			if (titleEl) titleEl.value = "";
 			if (bodyEl) bodyEl.value = "";
 			if (deleteBtn) deleteBtn.disabled = true;
@@ -120,8 +120,10 @@
 		addBtn.addEventListener("click", () => {
 			const newNote = createNote("Untitled", "");
 			notes.unshift(newNote);
-			// Do not auto-open new note; keep editor hidden until selection
-			// activeId remains unchanged
+			// If no note is active, make the new note active
+			if (!activeId) {
+				activeId = newNote.id;
+			}
 			renderList();
 			renderEditor();
 			debounceSave();
