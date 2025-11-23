@@ -1,0 +1,95 @@
+@model List<Codexly.Models.TaskItem>
+
+<link rel="stylesheet" href="~/css/todolist.css" />
+
+<div class="page-container">
+
+    @if (TempData["Error"] != null)
+    {
+        <div id="errorToast" class="error-toast">
+            ⚠ @TempData["Error"]
+        </div>
+    }
+
+    @if (TempData["Success"] != null)
+    {
+        <div id="successToast" class="success-toast">
+            ✔ @TempData["Success"]
+        </div>
+    }
+
+    <header class="main-header">
+        <div class="logo">codexly</div>
+
+        <nav class="nav-menu">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            <button class="signup-btn">Sign up</button>
+        </nav>
+    </header>
+
+    <h2 class="title">My to do list</h2>
+
+    <form asp-action="Create" class="add-task-form">
+        <input name="Title" placeholder="Add a Task" class="task-input" />
+        <button type="submit" class="add-btn">Add</button>
+    </form>
+
+    <div class="task-box">
+
+        <div class="check-all">
+            <span class="check-icon" id="checkAll">✔✔</span>
+            <span>Check all</span>
+        </div>
+
+        <div class="task-scroll">
+
+            @foreach (var item in Model)
+            {
+                <div class="task-row">
+                    <input type="checkbox" class="singleCheck" />
+
+                    <span class="task-text">@item.Title</span>
+
+                    <div class="task-actions">
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="delete-icon">🗑</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="edit-icon">🖊</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    const checkAllBtn = document.getElementById("checkAll");
+    const checkboxes = document.querySelectorAll(".singleCheck");
+
+    let allChecked = false;
+
+    checkAllBtn.addEventListener("click", () => {
+        allChecked = !allChecked;
+
+        checkboxes.forEach(c => c.checked = allChecked);
+
+        checkAllBtn.style.color = allChecked ? "#1b74e4" : "black";
+    });
+
+    const errorToast = document.getElementById("errorToast");
+
+    if (errorToast) {
+        setTimeout(() => {
+            errorToast.style.animation = "slideOut 0.4s forwards";
+        }, 2000);
+    }
+
+    const toast = document.getElementById("successToast");
+
+    if (toast) {
+        setTimeout(() => {
+            toast.style.animation = "slideOut 0.4s forwards";
+        }, 2000);
+    }
+</script>
+
