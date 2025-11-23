@@ -32,7 +32,16 @@
 
 	<section class="editor">
 		<input id="note-title" class="title-input" type="text" placeholder="Add Title .........." />
-		<textarea id="note-body" class="body-input" placeholder="Space to write down my notes"></textarea>
+		<div class="editor-split">
+			<div class="editor-pane">
+				<div class="pane-header">Editor</div>
+				<textarea id="note-body" class="body-input" placeholder="Write your markdown here...&#10;&#10;Example:&#10;# Heading&#10;**Bold text**&#10;*Italic text*&#10;- List item"></textarea>
+			</div>
+			<div class="preview-pane">
+				<div class="pane-header">Preview</div>
+				<div id="markdown-preview" class="markdown-preview"></div>
+			</div>
+		</div>
 		<div class="editor-actions">
 			<button id="delete-note" class="btn danger">Delete</button>
 			<span id="save-indicator" class="save-indicator" aria-live="polite"></span>
@@ -40,6 +49,8 @@
 	</section>
 </main>
 
+<!-- Marked.js library for markdown parsing -->
+<script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
 <script src="~/js/notes.js" defer></script>
 </body>
 </html>
