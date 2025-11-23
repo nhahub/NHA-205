@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>notes</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+	<div class="header-left">codexly</div>
+	<nav class="header-nav">
+		<a href="#" class="nav-link">Home</a>
+		<a href="#" class="nav-link">About</a>
+		<a href="#" class="nav-link">Contact</a>
+		<a href="../sign in/index.html" class="sign-up-btn">Sign in</a>
+	</nav>
+</header>
+
+<main class="layout">
+	<aside class="sidebar">
+		<div class="sidebar-header">
+			<span>Markdown Notes</span>
+			<button id="add-note" class="btn small">+ New</button>
+		</div>
+		<ul id="notes-list" class="notes-list" aria-label="Notes list"></ul>
+	</aside>
+
+	<section class="editor">
+		<input id="note-title" class="title-input" type="text" placeholder="Add Title .........." />
+		<textarea id="note-body" class="body-input" placeholder="Space to write down my notes"></textarea>
+		<div class="editor-actions">
+			<button id="delete-note" class="btn danger">Delete</button>
+			<span id="save-indicator" class="save-indicator" aria-live="polite"></span>
+		</div>
+	</section>
+</main>
+
+<script src="app.js" defer></script>
+</body>
+</html>
+
+

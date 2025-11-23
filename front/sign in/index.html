@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+    <title>Codexly - Sign in</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">Codexly</div>
+        <nav class="header-nav">
+            <a href="#" class="nav-link">Home</a>
+            <a href="#" class="nav-link">About</a>
+            <a href="#" class="nav-link">Contact</a>
+            <a href="../sign up/index.html" class="sign-up-btn">Sign up</a>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <div class="left-panel">
+            <form class="login-form">
+                <h1 class="form-title">welcome back</h1>
+                <p class="form-subtitle">please enter your details</p>
+                
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="Email" class="form-input" required>
+                    <span class="error-message" id="email-error"></span>
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" id="password" name="password" placeholder="password" class="form-input" required>
+                    <span class="error-message" id="password-error"></span>
+                </div>
+                
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" class="checkbox">
+                        <span>remember me</span>
+                    </label>
+                    <a href="#" class="forgot-password">forget password ?</a>
+                </div>
+                
+                <button type="submit" class="login-btn">sign in</button>
+                
+                <p class="signup-link">don't have an account ? <a href="../sign up/index.html" class="signup-anchor">Sign up</a></p>
+                
+                <div class="separator">
+                    <div class="separator-line"></div>
+                    <span class="separator-text">OR</span>
+                    <div class="separator-line"></div>
+                </div>
+                
+                <button type="button" class="google-btn">log in with google</button>
+            </form>
+        </div>
+        
+        <div class="right-panel">
+            <img src="pexels-mikhail-nilov-7988742.jpg" alt="People walking" class="side-image">
+        </div>
+    </div>
+</body>
+</html>

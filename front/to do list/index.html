@@ -1,18 +1,14 @@
-@{
-    Layout = null;
-}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My to do list</title>
-    <link rel="stylesheet" href="~/css/todolist-new.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <script defer src="~/js/todolist-new.js"></script>
+    <script defer src="app.js"></script>
     <style>
         /* Fallback if style.css fails to load quickly */
     </style>
@@ -21,10 +17,10 @@
     <header class="header">
       <div class="header-left">Codexly</div>
       <nav class="header-nav">
-        <a asp-controller="Home" asp-action="Index" class="nav-link">Home</a>
+        <a href="#" class="nav-link">Home</a>
         <a href="#" class="nav-link">About</a>
         <a href="#" class="nav-link">Contact</a>
-        <a asp-controller="Account" asp-action="SignUp" class="sign-up-btn">Sign up</a>
+        <a href="../sign up/index.html" class="sign-up-btn">Sign up</a>
       </nav>
     </header>
 
@@ -40,4 +36,5 @@
     </main>
   </body>
   </html>
+
 

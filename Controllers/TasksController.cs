@@ -15,8 +15,8 @@ namespace Codexly.Controllers
 
         public IActionResult Index()
         {
-            var items = _service.GetAll();
-            return View(items);
+            // Advanced todo list UI is client-side, but backend service is available for future integration
+            return View();
         }
 
         public IActionResult Create()

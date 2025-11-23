@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Codexly - Sign up</title>
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">Codexly</div>
+        <nav class="header-nav">
+            <a href="#" class="nav-link">Home</a>
+            <a href="#" class="nav-link">About</a>
+            <a href="#" class="nav-link">Contact</a>
+            <a href="../sign in/index.html" class="sign-up-btn">Sign in</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="right-panel">
+            <img src="pexels-djordje-petrovic-590080-2102416.jpg" alt="People working" class="side-image">
+        </div>
+
+        <div class="left-panel">
+            <form class="login-form">
+                <h1 class="form-title">welcome to Codexly</h1>
+                <p class="form-subtitle">please enter your details</p>
+
+                <div class="form-group">
+                    <input type="text" id="name" name="name" placeholder="Name" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="Email" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" id="password" name="password" placeholder="Password" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter Password" class="form-input" required>
+                </div>
+
+                <button type="submit" class="login-btn">sign up</button>
+
+                <p class="signup-link">already have an account ? <a href="../sign in/index.html" class="signup-anchor">log in</a></p>
+
+                <div class="separator">
+                    <div class="separator-line"></div>
+                    <span class="separator-text">OR</span>
+                    <div class="separator-line"></div>
+                </div>
+
+                <button type="button" class="google-btn">log in with google</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

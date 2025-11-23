@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>White Board</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">Codexly</div>
+    <nav class="header-nav">
+      <a href="#" class="nav-link">Home</a>
+      <a href="#" class="nav-link">About</a>
+      <a href="#" class="nav-link">Contact</a>
+      <a href="../sign up/index.html" class="sign-up-btn">Sign up</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <h1 class="title">White Board</h1>
+
+    <div class="board-frame">
+      <div id="canvas-stage" class="canvas-stage">
+        <canvas id="board"></canvas>
+        <canvas id="grid-canvas"></canvas>
+      </div>
+    </div>
+
+    <div class="toolbar toolbar-fixed">
+      <div class="tool-group">
+        <button data-tool="pen" class="tool-btn active" title="Pen">✏️ <span class="lbl">Pen</span></button>
+        <button data-tool="highlighter" class="tool-btn" title="Highlighter">🖍️ <span class="lbl">Highlighter</span></button>
+        <button data-tool="eraser" class="tool-btn" title="Eraser">🩹 <span class="lbl">Eraser</span></button>
+        <span class="divider"></span>
+        <button data-tool="line" class="tool-btn" title="Line">／ <span class="lbl">Line</span></button>
+        <button data-tool="rect" class="tool-btn" title="Rectangle">▭ <span class="lbl">Rect</span></button>
+        <button data-tool="circle" class="tool-btn" title="Circle">◯ <span class="lbl">Circle</span></button>
+        <button data-tool="text" class="tool-btn" title="Text">T <span class="lbl">Text</span></button>
+        <span class="divider"></span>
+        <label class="inline">
+          <span>Color</span>
+          <input id="color" type="color" value="#111111">
+        </label>
+        <label class="inline">
+          <span>Size</span>
+          <input id="size" type="range" min="1" max="50" value="3">
+        </label>
+      </div>
+      <div class="tool-group">
+        <button id="zoom-out" class="tool-btn" title="Zoom out">－ <span class="lbl">Zoom Out</span></button>
+        <button id="zoom-in" class="tool-btn" title="Zoom in">＋ <span class="lbl">Zoom In</span></button>
+        <button id="zoom-reset" class="tool-btn" title="Reset zoom">⤾ <span class="lbl">100%</span></button>
+        <button id="zoom-fit" class="tool-btn" title="Fit to screen">⤢ <span class="lbl">Fit</span></button>
+        <span class="divider"></span>
+        <button id="undo" class="tool-btn" title="Undo">↶ <span class="lbl">Undo</span></button>
+        <button id="redo" class="tool-btn" title="Redo">↷ <span class="lbl">Redo</span></button>
+        <button id="clear" class="tool-btn" title="Clear">🗑 <span class="lbl">Clear</span></button>
+        <button id="download" class="tool-btn" title="Download PNG">⬇️ <span class="lbl">Download</span></button>
+        <label class="inline">
+          <input id="grid-toggle" type="checkbox">
+          <span>Grid</span>
+        </label>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
+
+

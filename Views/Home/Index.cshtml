@@ -3,11 +3,56 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to Codexly</h1>
+    <p>Your all-in-one productivity platform</p>
     <hr />
-    <h2>Quick Links</h2>
-    <p>
-        <a class="btn btn-primary btn-lg" asp-controller="Tasks" asp-action="Index">Go to Tasks</a>
-    </p>
+    <h2>Features</h2>
+    <div class="row mt-4">
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Tasks</h5>
+                    <p class="card-text">Advanced todo list with plans & milestones</p>
+                    <a class="btn btn-primary" asp-controller="Tasks" asp-action="Index">Go to Tasks</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">White Board</h5>
+                    <p class="card-text">Interactive drawing board</p>
+                    <a class="btn btn-primary" asp-controller="WhiteBoard" asp-action="Index">Go to White Board</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Roadmaps</h5>
+                    <p class="card-text">Learning roadmaps for developers</p>
+                    <a class="btn btn-primary" asp-controller="Roadmaps" asp-action="Index">Go to Roadmaps</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Notes</h5>
+                    <p class="card-text">Markdown notes editor</p>
+                    <a class="btn btn-primary" asp-controller="Notes" asp-action="Index">Go to Notes</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Account</h5>
+                    <p class="card-text">Sign in or create an account</p>
+                    <a class="btn btn-primary" asp-controller="Account" asp-action="SignIn">Sign In</a>
+                    <a class="btn btn-secondary" asp-controller="Account" asp-action="SignUp">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
