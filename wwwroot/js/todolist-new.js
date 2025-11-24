@@ -107,7 +107,30 @@
     const item = createElement('li', { className: 'task' + (isDone ? ' completed' : '') });
     const checkbox = createElement('input', { attrs: { type: 'checkbox' } });
     checkbox.checked = isDone;
-    checkbox.addEventListener('change', () => { item.classList.toggle('completed', checkbox.checked); });
+
+    // Extract task ID from serverTasks if available
+    let taskId = null;
+    if (typeof serverTasks !== 'undefined') {
+      const found = serverTasks.find(t => t.Title === taskText && t.IsDone === isDone);
+      if (found) taskId = found.Id;
+    }
+
+    checkbox.addEventListener('change', () => {
+      item.classList.toggle('completed', checkbox.checked);
+      // Send AJAX request to backend to toggle status
+      if (taskId) {
+        fetch('/Tasks/ToggleDone', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'RequestVerificationToken': getAntiForgeryToken()
+          },
+          body: `id=${taskId}`
+        }).then(res => {
+          if (!res.ok) alert('Failed to update task status!');
+        }).catch(() => alert('Failed to update task status!'));
+      }
+    });
 
     const text = createElement('div', { className: 'task-text', text: taskText });
     const edit = createElement('button', { className: 'icon-btn edit', text: '✎', attrs: { title: 'Edit' } });
@@ -121,6 +144,12 @@
 
     item.append(checkbox, text, edit, del);
     listEl.appendChild(item);
+
+    // Helper to get anti-forgery token
+    function getAntiForgeryToken() {
+      const el = document.querySelector('input[name="__RequestVerificationToken"]');
+      return el ? el.value : '';
+    }
   }
 
   function handleAddPlan() {
