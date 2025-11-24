@@ -33,7 +33,7 @@
     <main class="page">
         <h1 class="title">My to do list</h1>
 
-        <!-- Add new task -->
+        <!-- Add new plan -->
         <div class="new-plan">
             <form asp-action="Create" method="post">
                 <input name="Title" id="new-plan-input" type="text"
@@ -42,46 +42,14 @@
             </form>
         </div>
 
-        <!-- Tasks -->
-        <section id="plans" class="plans">
-            @if (!Model.Any())
-            {
-                <p>You have no tasks yet.</p>
-            }
-            else
-            {
-                <ul>
-                    @foreach (var task in Model)
-                    {
-                        <li>
-                            <!-- Toggle done -->
-                            <form asp-action="ToggleDone" method="post" style="display:inline;">
-                                <input type="hidden" name="id" value="@task.Id" />
-                                <button type="submit" class="toggle-btn">
-                                    @if (task.IsDone)
-                                    {
-                                        <s>@task.Title</s>
-                                    }
-                                    else
-                                    {
-                                        @task.Title
-                                    }
-                                </button>
-                            </form>
-
-                            <!-- Edit -->
-                            <a asp-action="Edit" asp-route-id="@task.Id" class="edit-link">Edit</a>
-
-                            <!-- Delete -->
-                            <form asp-action="DeleteConfirmed" method="post" style="display:inline;">
-                                <input type="hidden" name="id" value="@task.Id" />
-                                <button type="submit" class="delete-link">Delete</button>
-                            </form>
-                        </li>
-                    }
-                </ul>
-            }
-        </section>
+        <!-- Tasks container (JS will populate DB tasks dynamically) -->
+        <section id="plans" class="plans"></section>
     </main>
+
+    <!-- JS -->
+    <script>
+        const serverTasks = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model));
+    </script>
+    <script src="~/js/todolist-new.js"></script>
 </body>
 </html>
