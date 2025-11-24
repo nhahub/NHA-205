@@ -1,5 +1,7 @@
+@model List<Codexly.Models.NoteItem>
 @{
     Layout = null;
+    var active = Model.FirstOrDefault();
 }
 
 <!DOCTYPE html>
@@ -27,21 +29,48 @@
         <aside class="sidebar">
             <div class="sidebar-header">
                 <span>Markdown Notes</span>
-                <button id="add-note" class="btn small">+ New</button>
+                <form asp-action="Add" method="post" style="display:inline;">
+                    <button id="add-note" class="btn small" type="submit">+ New</button>
+                </form>
             </div>
-            <ul id="notes-list" class="notes-list" aria-label="Notes list"></ul>
+            <ul id="notes-list" class="notes-list" aria-label="Notes list">
+                @foreach (var note in Model)
+                {
+                    var firstLine = (note.Body ?? string.Empty).Split('\n').FirstOrDefault() ?? string.Empty;
+                    <li data-id="@note.Id" data-title="@note.Title" data-body="@note.Body">
+                        <span class="note-title">@note.Title</span>
+                        <span class="note-snippet">@firstLine</span>
+                    </li>
+                }
+            </ul>
         </aside>
 
         <section class="editor">
-            <input id="note-title" class="title-input" type="text" placeholder="Add Title .........." />
-            <textarea id="note-body" class="body-input" placeholder="Space to write down my notes"></textarea>
-            <div id="markdown-preview" class="markdown-preview" aria-live="polite"></div>
-            <div class="editor-actions">
-                <button id="delete-note" class="btn danger">Delete</button>
-                <span id="save-indicator" class="save-indicator"></span>
-            </div>
+            <form id="updateForm" asp-action="Update" method="post">
+                <input type="hidden" id="note-id" name="id" value="@(active?.Id ?? 0)" />
+                <input id="note-title" name="Title" class="title-input" type="text" placeholder="Add Title .........." value="@active?.Title" />
+                <div class="editor-split">
+                    <div class="editor-pane">
+                        <div class="pane-header">Editor</div>
+                        <textarea id="note-body" name="Body" class="body-input" placeholder="Space to write down my notes">@active?.Body</textarea>
+                    </div>
+                    <div class="preview-pane">
+                        <div class="pane-header">Preview</div>
+                        <div id="markdown-preview" class="markdown-preview" aria-live="polite"></div>
+                    </div>
+                </div>
+                <div class="editor-actions">
+                    <div class="action-buttons">
+                        <button type="submit" class="btn">Save</button>
+                        <button id="delete-note" type="button" class="btn danger">Delete</button>
+                    </div>
+                    <span id="save-indicator" class="save-indicator"></span>
+                </div>
+            </form>
+            <form id="deleteForm" asp-action="Delete" method="post" style="display:none;">
+                <input type="hidden" id="delete-id" name="id" value="@(active?.Id ?? 0)" />
+            </form>
         </section>
     </main>
 </body>
 </html>
-

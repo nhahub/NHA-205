@@ -2,9 +2,7 @@
 (function () {
 	"use strict";
 
-    const baseKey = "codexly_notes_v1";
-    const user = typeof window !== "undefined" && window.USER_NAME ? String(window.USER_NAME) : "";
-    const STORAGE_KEY = user ? (baseKey + "_" + user.replace(/[^a-z0-9_-]/gi, "").toLowerCase()) : baseKey;
+    // Server-backed mode: no localStorage persistence
 
 	/** @type {HTMLUListElement} */
 	const listEl = document.getElementById("notes-list");
@@ -14,8 +12,8 @@
 	const bodyEl = document.getElementById("note-body");
 	/** @type {HTMLElement} */
 	const editorSection = document.querySelector(".editor");
-	/** @type {HTMLElement} */
-	const previewEl = document.getElementById("markdown-preview");
+    /** @type {HTMLElement} */
+    const previewEl = document.getElementById("markdown-preview");
 	/** @type {HTMLButtonElement} */
 	const addBtn = document.getElementById("add-note");
 	/** @type {HTMLButtonElement} */
@@ -27,87 +25,64 @@
 	 * @typedef {{ id:string, title:string, body:string, updatedAt:number }} Note
 	 */
 
-	/** @type {Note[]} */
-	let notes = [];
-	/** @type {string | null} */
-	let activeId = null;
-	let saveTimeout = null;
+    /** @type {string | null} */
+    let activeId = null;
 
-	function load() {
-		try {
-			const raw = localStorage.getItem(STORAGE_KEY);
-			if (raw) {
-				const parsed = JSON.parse(raw);
-				if (Array.isArray(parsed)) {
-					notes = parsed;
-				}
-			}
-		} catch (_) {}
+    function load() {
+        const li = document.querySelector('#notes-list li');
+        if (li) activeId = li.dataset.id || null;
+        renderEditor();
+    }
 
-		// Start empty if there are no saved notes
-		if (!activeId && notes[0]) activeId = notes[0].id;
-		renderList();
-		renderEditor();
-	}
+    // no-op in server mode
+    function persist() {}
 
-	function persist() {
-		localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
-	}
+    function getNoteData(id) {
+        const li = document.querySelector(`#notes-list li[data-id="${id}"]`);
+        if (!li) return null;
+        return {
+            id,
+            title: li.dataset.title || "Untitled",
+            body: li.dataset.body || ""
+        };
+    }
 
-	function createNote(title, body) {
-		return {
-			id: "n_" + Math.random().toString(36).slice(2, 10),
-			title: title || "Untitled",
-			body: body || "",
-			updatedAt: Date.now()
-		};
-	}
+    function wireListClicks() {
+        if (!listEl) return;
+        Array.from(listEl.querySelectorAll('li')).forEach((li) => {
+            li.addEventListener('click', () => {
+                activeId = li.dataset.id || null;
+                Array.from(listEl.querySelectorAll('li')).forEach(x => x.classList.remove('active'));
+                li.classList.add('active');
+                renderEditor();
+            });
+        });
+    }
 
-	function renderList() {
-		if (!listEl) return;
-		listEl.innerHTML = "";
-		// sort by updated desc
-		const sorted = [...notes].sort((a, b) => b.updatedAt - a.updatedAt);
-		for (const note of sorted) {
-			const li = document.createElement("li");
-			li.dataset.id = note.id;
-			if (note.id === activeId) li.classList.add("active");
-			const title = document.createElement("span");
-			title.className = "note-title";
-			title.textContent = note.title || "Untitled";
-			const snippet = document.createElement("span");
-			snippet.className = "note-snippet";
-			const firstLine = (note.body || "").split(/\r?\n/)[0] || "";
-			snippet.textContent = firstLine.slice(0, 40);
-			li.appendChild(title);
-			li.appendChild(snippet);
-			li.addEventListener("click", () => {
-				activeId = note.id;
-				renderList();
-				renderEditor();
-			});
-			listEl.appendChild(li);
-		}
-	}
-
-	function renderEditor() {
-		const active = notes.find(n => n.id === activeId);
-		if (!active) {
-			// Show empty editor when no active note (allow creating new content)
-			if (editorSection) editorSection.style.display = "flex";
-			if (titleEl) titleEl.value = "";
-			if (bodyEl) bodyEl.value = "";
-			if (deleteBtn) deleteBtn.disabled = true;
-			renderMarkdown("");
-			return;
-		}
-		// Show editor when a note is active
-		if (editorSection) editorSection.style.display = "flex";
-		if (deleteBtn) deleteBtn.disabled = false;
-		if (titleEl) titleEl.value = active.title || "";
-		if (bodyEl) bodyEl.value = active.body || "";
-		renderMarkdown(active.body || "");
-	}
+    function renderEditor() {
+        const active = activeId ? getNoteData(activeId) : null;
+        if (!active) {
+            if (editorSection) editorSection.style.display = "flex";
+            if (titleEl) titleEl.value = "";
+            if (bodyEl) bodyEl.value = "";
+            const idInput = document.getElementById('note-id');
+            const delId = document.getElementById('delete-id');
+            if (idInput) idInput.value = "0";
+            if (delId) delId.value = "0";
+            if (deleteBtn) deleteBtn.disabled = true;
+            renderMarkdown("");
+            return;
+        }
+        if (editorSection) editorSection.style.display = "flex";
+        if (deleteBtn) deleteBtn.disabled = false;
+        if (titleEl) titleEl.value = active.title || "";
+        if (bodyEl) bodyEl.value = active.body || "";
+        const idInput = document.getElementById('note-id');
+        const delId = document.getElementById('delete-id');
+        if (idInput) idInput.value = active.id;
+        if (delId) delId.value = active.id;
+        renderMarkdown(active.body || "");
+    }
 
 	/**
 	 * Renders markdown text to HTML in the preview pane
@@ -139,88 +114,43 @@
 		}
 	}
 
-	function debounceSave() {
-		if (saveIndicator) saveIndicator.textContent = "Saving…";
-		if (saveTimeout) clearTimeout(saveTimeout);
-		saveTimeout = setTimeout(() => {
-			persist();
-			if (saveIndicator) saveIndicator.textContent = "Saved";
-			setTimeout(() => {
-				if (saveIndicator) saveIndicator.textContent = "";
-			}, 1200);
-		}, 300);
-	}
+    function markDirty() {
+        if (saveIndicator) saveIndicator.textContent = "Unsaved changes";
+    }
 
 	// Events
-	if (addBtn) {
-		addBtn.addEventListener("click", () => {
-			const newNote = createNote("Untitled", "");
-			notes.unshift(newNote);
-			// If no note is active, make the new note active
-			if (!activeId) {
-				activeId = newNote.id;
-			}
-			renderList();
-			renderEditor();
-			debounceSave();
-		});
-	}
+    // Add handled by server via form submit
 
-	if (deleteBtn) {
-		deleteBtn.addEventListener("click", () => {
-			if (!activeId) return;
-			const idx = notes.findIndex(n => n.id === activeId);
-			if (idx >= 0) {
-				notes.splice(idx, 1);
-				activeId = notes[0] ? notes[0].id : null;
-				renderList();
-				renderEditor();
-				debounceSave();
-			}
-		});
-	}
+    if (deleteBtn) {
+        deleteBtn.addEventListener("click", () => {
+            const delForm = document.getElementById('deleteForm');
+            if (!delForm) return;
+            delForm.requestSubmit();
+        });
+    }
 
-	if (bodyEl) {
-		bodyEl.addEventListener("input", (e) => {
-			const active = notes.find(n => n.id === activeId);
-			if (!active) {
-				// If no active note but user is typing, create a new note
-				const newNote = createNote(titleEl?.value || "Untitled", e.target.value);
-				notes.unshift(newNote);
-				activeId = newNote.id;
-				renderList();
-				renderMarkdown(e.target.value);
-				debounceSave();
-				return;
-			}
-			active.body = e.target.value;
-			active.updatedAt = Date.now();
-			renderList();
-			renderMarkdown(e.target.value); // Update preview in real-time
-			debounceSave();
-		});
-	}
+    if (bodyEl) {
+        bodyEl.addEventListener("input", (e) => {
+            renderMarkdown(e.target.value);
+            markDirty();
+        });
+    }
 
-	if (titleEl) {
-		titleEl.addEventListener("input", (e) => {
-			const active = notes.find(n => n.id === activeId);
-			if (!active) {
-				// If no active note but user is typing title, create a new note
-				const newNote = createNote(e.target.value || "Untitled", bodyEl?.value || "");
-				notes.unshift(newNote);
-				activeId = newNote.id;
-				renderList();
-				debounceSave();
-				return;
-			}
-			active.title = e.target.value;
-			active.updatedAt = Date.now();
-			renderList();
-			debounceSave();
-		});
-	}
+    if (titleEl) {
+        titleEl.addEventListener("input", () => {
+            markDirty();
+        });
+    }
+
+    // Save button submits update form
+    const updateForm = document.getElementById('updateForm');
+    if (updateForm) {
+        updateForm.addEventListener('submit', () => {
+            if (saveIndicator) saveIndicator.textContent = "Saving…";
+        });
+    }
 
 	// init
-	load();
+    wireListClicks();
+    load();
 })();
-
