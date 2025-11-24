@@ -48,21 +48,27 @@ namespace Codexly.Controllers
         [HttpPost]
         public IActionResult Create(string Title)
         {
+            Console.WriteLine($"[DEBUG] Create POST called. Title: '{Title}'");
             if (string.IsNullOrWhiteSpace(Title))
             {
                 TempData["Error"] = "You must enter a task name";
+                Console.WriteLine("[DEBUG] Title is empty or whitespace.");
                 return RedirectToAction("Index");
             }
 
             var userId = _userManager.GetUserId(User);
+            Console.WriteLine($"[DEBUG] UserId: {userId}");
 
-            _service.Add(new TaskItem
+            var newTask = new TaskItem
             {
                 Title = Title,
                 Description = "",
                 IsDone = false,
                 UserId = userId
-            });
+            };
+            Console.WriteLine($"[DEBUG] TaskItem to add: Title={newTask.Title}, UserId={newTask.UserId}");
+
+            _service.Add(newTask);
 
             TempData["Success"] = "Task added successfully!";
             return RedirectToAction("Index");

@@ -133,8 +133,7 @@
     newPlanInput.focus();
   }
 
-  addPlanButton.addEventListener('click', handleAddPlan);
-  newPlanInput.addEventListener('keydown', e => { if (e.key === 'Enter') handleAddPlan(); });
+  // Remove JS event handlers for addPlanButton and newPlanInput to allow form submission
 
   // --- Populate DB tasks dynamically ---
   if (serverTasks.length) {

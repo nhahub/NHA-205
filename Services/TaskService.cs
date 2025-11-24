@@ -26,8 +26,10 @@ namespace Codexly.Services
 
         public void Add(TaskItem item)
         {
+            Console.WriteLine($"[DEBUG] TaskService.Add called. Title: {item.Title}, UserId: {item.UserId}");
             _db.Tasks.Add(item);
-            _db.SaveChanges();
+            var result = _db.SaveChanges();
+            Console.WriteLine($"[DEBUG] SaveChanges result: {result}");
         }
 
         public void Update(TaskItem item)
