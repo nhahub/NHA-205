@@ -1,57 +1,40 @@
-@{
-    Layout = null;
-}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>notes</title>
-<link rel="stylesheet" href="~/css/notes.css">
-</head>
-<body>
-<header class="header">
-	<div class="header-left">codexly</div>
-	<nav class="header-nav">
-		<a asp-controller="Home" asp-action="Index" class="nav-link">Home</a>
-		<a href="#" class="nav-link">About</a>
-		<a href="#" class="nav-link">Contact</a>
-		<a asp-controller="Account" asp-action="SignIn" class="sign-up-btn">Sign in</a>
-	</nav>
-</header>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My to do list</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <script defer src="app.js"></script>
+    <style>
+        /* Fallback if style.css fails to load quickly */
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-left">Codexly</div>
+      <nav class="header-nav">
+        <a href="#" class="nav-link">Home</a>
+        <a href="#" class="nav-link">About</a>
+        <a href="#" class="nav-link">Contact</a>
+        <a href="../sign up/index.html" class="sign-up-btn">Sign up</a>
+      </nav>
+    </header>
 
-<main class="layout">
-	<aside class="sidebar">
-		<div class="sidebar-header">
-			<span>Markdown Notes</span>
-			<button id="add-note" class="btn small">+ New</button>
-		</div>
-		<ul id="notes-list" class="notes-list" aria-label="Notes list"></ul>
-	</aside>
+    <main class="page">
+      <h1 class="title">My to do list</h1>
 
-	<section class="editor">
-		<input id="note-title" class="title-input" type="text" placeholder="Add Title .........." />
-		<div class="editor-split">
-			<div class="editor-pane">
-				<div class="pane-header">Editor</div>
-				<textarea id="note-body" class="body-input" placeholder="Write your markdown here...&#10;&#10;Example:&#10;# Heading&#10;**Bold text**&#10;*Italic text*&#10;- List item"></textarea>
-			</div>
-			<div class="preview-pane">
-				<div class="pane-header">Preview</div>
-				<div id="markdown-preview" class="markdown-preview"></div>
-			</div>
-		</div>
-		<div class="editor-actions">
-			<button id="delete-note" class="btn danger">Delete</button>
-			<span id="save-indicator" class="save-indicator" aria-live="polite"></span>
-		</div>
-	</section>
-</main>
+      <div class="new-plan">
+        <input id="new-plan-input" type="text" placeholder="Add a new plan" autocomplete="off" />
+        <button id="add-plan-btn" type="button">Add</button>
+      </div>
 
-<!-- Marked.js library for markdown parsing -->
-<script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
-<script src="~/js/notes.js" defer></script>
-</body>
-</html>
+      <section id="plans" class="plans"></section>
+    </main>
+  </body>
+  </html>
+
 

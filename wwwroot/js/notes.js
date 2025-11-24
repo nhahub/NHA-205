@@ -2,7 +2,9 @@
 (function () {
 	"use strict";
 
-	const STORAGE_KEY = "codexly_notes_v1";
+    const baseKey = "codexly_notes_v1";
+    const user = typeof window !== "undefined" && window.USER_NAME ? String(window.USER_NAME) : "";
+    const STORAGE_KEY = user ? (baseKey + "_" + user.replace(/[^a-z0-9_-]/gi, "").toLowerCase()) : baseKey;
 
 	/** @type {HTMLUListElement} */
 	const listEl = document.getElementById("notes-list");

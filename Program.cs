@@ -12,16 +12,10 @@ namespace Codexly
             var builder = WebApplication.CreateBuilder(args);
 
             
-            // For testing: Use in-memory database (no SQL Server)
-            // To switch to SQL Server: Change UseInMemoryDatabase to UseSqlServer and uncomment connectionString
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseInMemoryDatabase("CodexlyTestDb"));
+                options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-            
-            // Uncomment below and comment above when ready to use SQL Server:
-            // var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            // builder.Services.AddDbContext<ApplicationDbContext>(options =>
-            //     options.UseSqlServer(connectionString));
 
             // Disable email confirmation for easier testing
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
@@ -45,11 +39,17 @@ namespace Codexly
                 app.UseHsts();
             }
 
+            using (var scope = app.Services.CreateScope())
+            {
+                var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                db.Database.Migrate();
+            }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(

@@ -1,30 +1,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using Codexly.Models;
+using Codexly.Data;
 
 namespace Codexly.Services
 {
     public class TaskService : ITaskService
     {
-        private static List<TaskItem> _items = new List<TaskItem>()
+        private readonly ApplicationDbContext _db;
+
+        public TaskService(ApplicationDbContext db)
         {
-            new TaskItem { Id = 1, Title = "Sample Task", IsDone = false, UserId = "sample-user-id" }
-        };
+            _db = db;
+        }
 
         public List<TaskItem> GetTasksForUser(string userId)
         {
-            return _items.Where(x => x.UserId == userId).ToList();
+            return _db.Tasks.Where(x => x.UserId == userId).OrderBy(x => x.Id).ToList();
         }
 
         public TaskItem? GetById(int id)
         {
-            return _items.FirstOrDefault(x => x.Id == id);
+            return _db.Tasks.FirstOrDefault(x => x.Id == id);
         }
 
         public void Add(TaskItem item)
         {
-            item.Id = _items.Count == 0 ? 1 : _items.Max(x => x.Id) + 1;
-            _items.Add(item);
+            _db.Tasks.Add(item);
+            _db.SaveChanges();
         }
 
         public void Update(TaskItem item)
@@ -34,6 +37,7 @@ namespace Codexly.Services
             {
                 existing.Title = item.Title;
                 existing.IsDone = item.IsDone;
+                _db.SaveChanges();
             }
         }
 
@@ -41,7 +45,10 @@ namespace Codexly.Services
         {
             var existing = GetById(id);
             if (existing != null)
-                _items.Remove(existing);
+            {
+                _db.Tasks.Remove(existing);
+                _db.SaveChanges();
+            }
         }
     }
 }

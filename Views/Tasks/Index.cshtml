@@ -32,7 +32,7 @@
 
         <!-- Add new task -->
         <div class="new-plan">
-            <input id="new-plan-input" name="Title" type="text" placeholder="Add a new plan" autocomplete="off" />
+            <input id="new-plan-input" name="Title" type="text" placeholder="Add a new plan" autocomplete="off" form="createTaskForm" />
             <button id="add-plan-btn" type="submit" form="createTaskForm">Add</button>
         </div>
 
@@ -65,8 +65,17 @@
                                 </button>
                             </form>
 
-                            <a asp-action="Edit" asp-route-id="@task.Id">Edit</a> |
-                            <a asp-action="Delete" asp-route-id="@task.Id">Delete</a>
+                            <form asp-action="Edit" method="post" style="display:inline; margin-left:8px;">
+                                <input type="hidden" name="Id" value="@task.Id" />
+                                <input type="hidden" name="UserId" value="@task.UserId" />
+                                <input type="text" name="Title" value="@task.Title" />
+                                <button type="submit">Save</button>
+                            </form>
+
+                            <form asp-action="DeleteConfirmed" method="post" style="display:inline; margin-left:8px;">
+                                <input type="hidden" name="id" value="@task.Id" />
+                                <button type="submit">Delete</button>
+                            </form>
                         </li>
                     }
                 </ul>
@@ -75,3 +84,4 @@
     </main>
 </body>
 </html>
+
