@@ -1,40 +1,47 @@
+@{
+    Layout = null;
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My to do list</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <script defer src="app.js"></script>
-    <style>
-        /* Fallback if style.css fails to load quickly */
-    </style>
-  </head>
-  <body>
+    <title>notes</title>
+    <link rel="stylesheet" href="~/css/notes.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script defer src="~/js/notes.js"></script>
+</head>
+<body>
     <header class="header">
-      <div class="header-left">Codexly</div>
-      <nav class="header-nav">
-        <a href="#" class="nav-link">Home</a>
-        <a href="#" class="nav-link">About</a>
-        <a href="#" class="nav-link">Contact</a>
-        <a href="../sign up/index.html" class="sign-up-btn">Sign up</a>
-      </nav>
+        <div class="header-left">Codexly</div>
+        <nav class="header-nav">
+            <a asp-controller="Home" asp-action="Index" class="nav-link">Home</a>
+            <a href="#" class="nav-link">About</a>
+            <a href="#" class="nav-link">Contact</a>
+            <a asp-controller="Account" asp-action="SignIn" class="sign-up-btn">Sign in</a>
+        </nav>
     </header>
 
-    <main class="page">
-      <h1 class="title">My to do list</h1>
+    <main class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <span>Markdown Notes</span>
+                <button id="add-note" class="btn small">+ New</button>
+            </div>
+            <ul id="notes-list" class="notes-list" aria-label="Notes list"></ul>
+        </aside>
 
-      <div class="new-plan">
-        <input id="new-plan-input" type="text" placeholder="Add a new plan" autocomplete="off" />
-        <button id="add-plan-btn" type="button">Add</button>
-      </div>
-
-      <section id="plans" class="plans"></section>
+        <section class="editor">
+            <input id="note-title" class="title-input" type="text" placeholder="Add Title .........." />
+            <textarea id="note-body" class="body-input" placeholder="Space to write down my notes"></textarea>
+            <div id="markdown-preview" class="markdown-preview" aria-live="polite"></div>
+            <div class="editor-actions">
+                <button id="delete-note" class="btn danger">Delete</button>
+                <span id="save-indicator" class="save-indicator"></span>
+            </div>
+        </section>
     </main>
-  </body>
-  </html>
-
+</body>
+</html>
 

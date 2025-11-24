@@ -10,12 +10,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My to do list</title>
+
+    <!-- Your CSS -->
     <link rel="stylesheet" href="~/css/todolist-new.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <script defer src="~/js/todolist-new.js"></script>
 </head>
+
 <body>
     <header class="header">
         <div class="header-left">Codexly</div>
@@ -32,14 +35,14 @@
 
         <!-- Add new task -->
         <div class="new-plan">
-            <input id="new-plan-input" name="Title" type="text" placeholder="Add a new plan" autocomplete="off" form="createTaskForm" />
-            <button id="add-plan-btn" type="submit" form="createTaskForm">Add</button>
+            <form asp-action="Create" method="post">
+                <input name="Title" id="new-plan-input" type="text"
+                       placeholder="Add a new plan" autocomplete="off" required />
+                <button type="submit" id="add-plan-btn">Add</button>
+            </form>
         </div>
 
-        <!-- Hidden form to submit tasks -->
-        <form id="createTaskForm" asp-action="Create" method="post" style="display:none;"></form>
-
-        <!-- Tasks list -->
+        <!-- Tasks -->
         <section id="plans" class="plans">
             @if (!Model.Any())
             {
@@ -51,6 +54,7 @@
                     @foreach (var task in Model)
                     {
                         <li>
+                            <!-- Toggle done -->
                             <form asp-action="ToggleDone" method="post" style="display:inline;">
                                 <input type="hidden" name="id" value="@task.Id" />
                                 <button type="submit" class="toggle-btn">
@@ -65,16 +69,13 @@
                                 </button>
                             </form>
 
-                            <form asp-action="Edit" method="post" style="display:inline; margin-left:8px;">
-                                <input type="hidden" name="Id" value="@task.Id" />
-                                <input type="hidden" name="UserId" value="@task.UserId" />
-                                <input type="text" name="Title" value="@task.Title" />
-                                <button type="submit">Save</button>
-                            </form>
+                            <!-- Edit -->
+                            <a asp-action="Edit" asp-route-id="@task.Id" class="edit-link">Edit</a>
 
-                            <form asp-action="DeleteConfirmed" method="post" style="display:inline; margin-left:8px;">
+                            <!-- Delete -->
+                            <form asp-action="DeleteConfirmed" method="post" style="display:inline;">
                                 <input type="hidden" name="id" value="@task.Id" />
-                                <button type="submit">Delete</button>
+                                <button type="submit" class="delete-link">Delete</button>
                             </form>
                         </li>
                     }
@@ -84,4 +85,3 @@
     </main>
 </body>
 </html>
-
