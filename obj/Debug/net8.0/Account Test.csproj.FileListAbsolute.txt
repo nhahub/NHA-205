@@ -150,15 +150,6 @@ D:\Depi new final project\New folder\Account Test\Account Test\obj\Debug\net8.0\
 D:\Depi new final project\New folder\Account Test\Account Test\obj\Debug\net8.0\Account Test.pdb
 D:\Depi new final project\New folder\Account Test\Account Test\obj\Debug\net8.0\Account Test.genruntimeconfig.cache
 D:\Depi new final project\New folder\Account Test\Account Test\obj\Debug\net8.0\ref\Account Test.dll
-H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\Account Test.csproj.AssemblyReference.cache
-H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\rpswa.dswa.cache.json
-H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\Account Test.GeneratedMSBuildEditorConfig.editorconfig
-H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\Account Test.AssemblyInfoInputs.cache
-H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\Account Test.AssemblyInfo.cs
-H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\Account Test.csproj.CoreCompileInputs.cache
-H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\Account Test.MvcApplicationPartsAssemblyInfo.cache
-H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\Account Test.RazorAssemblyInfo.cache
-H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\Account Test.RazorAssemblyInfo.cs
 H:\Visual Studio Code Projects\Account Test\Account Test\bin\Debug\net8.0\appsettings.Development.json
 H:\Visual Studio Code Projects\Account Test\Account Test\bin\Debug\net8.0\appsettings.json
 H:\Visual Studio Code Projects\Account Test\Account Test\bin\Debug\net8.0\Account Test.staticwebassets.runtime.json
@@ -174,6 +165,7 @@ H:\Visual Studio Code Projects\Account Test\Account Test\bin\Debug\net8.0\Humani
 H:\Visual Studio Code Projects\Account Test\Account Test\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 H:\Visual Studio Code Projects\Account Test\Account Test\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 H:\Visual Studio Code Projects\Account Test\Account Test\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+H:\Visual Studio Code Projects\Account Test\Account Test\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.UI.dll
 H:\Visual Studio Code Projects\Account Test\Account Test\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 H:\Visual Studio Code Projects\Account Test\Account Test\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
 H:\Visual Studio Code Projects\Account Test\Account Test\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
@@ -189,6 +181,7 @@ H:\Visual Studio Code Projects\Account Test\Account Test\bin\Debug\net8.0\Micros
 H:\Visual Studio Code Projects\Account Test\Account Test\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
 H:\Visual Studio Code Projects\Account Test\Account Test\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 H:\Visual Studio Code Projects\Account Test\Account Test\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+H:\Visual Studio Code Projects\Account Test\Account Test\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Embedded.dll
 H:\Visual Studio Code Projects\Account Test\Account Test\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
 H:\Visual Studio Code Projects\Account Test\Account Test\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
 H:\Visual Studio Code Projects\Account Test\Account Test\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
@@ -284,6 +277,17 @@ H:\Visual Studio Code Projects\Account Test\Account Test\bin\Debug\net8.0\runtim
 H:\Visual Studio Code Projects\Account Test\Account Test\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 H:\Visual Studio Code Projects\Account Test\Account Test\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 H:\Visual Studio Code Projects\Account Test\Account Test\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\Account Test.csproj.AssemblyReference.cache
+H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\rpswa.dswa.cache.json
+H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\Account Test.GeneratedMSBuildEditorConfig.editorconfig
+H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\Account Test.AssemblyInfoInputs.cache
+H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\Account Test.AssemblyInfo.cs
+H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\Account Test.csproj.CoreCompileInputs.cache
+H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\Account Test.MvcApplicationPartsAssemblyInfo.cs
+H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\Account Test.MvcApplicationPartsAssemblyInfo.cache
+H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\Account Test.RazorAssemblyInfo.cache
+H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\Account Test.RazorAssemblyInfo.cs
+H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\Account Test.sourcelink.json
 H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\rjimswa.dswa.cache.json
 H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
 H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
@@ -294,13 +298,10 @@ H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\static
 H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\staticwebassets.build.json.cache
 H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\staticwebassets.development.json
 H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\Account .28933B88.Up2Date
 H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\Account Test.dll
 H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\refint\Account Test.dll
 H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\Account Test.pdb
 H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\Account Test.genruntimeconfig.cache
 H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\ref\Account Test.dll
-H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\Account Test.sourcelink.json
-H:\Visual Studio Code Projects\Account Test\Account Test\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.UI.dll
-H:\Visual Studio Code Projects\Account Test\Account Test\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Embedded.dll
-H:\Visual Studio Code Projects\Account Test\Account Test\obj\Debug\net8.0\Account Test.MvcApplicationPartsAssemblyInfo.cs
