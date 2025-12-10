@@ -73,7 +73,9 @@
             </section>
 
             <div class="logout-container">
-                <button class="logout-btn">Log out <span class="icon">↪</span></button>
+                <form asp-controller="Account" asp-action="Logout" method="post" style="display:inline;">
+                    <button type="submit" class="logout-btn">Log out <span class="icon">↪</span></button>
+                </form>
             </div>
         </div>
     </main>

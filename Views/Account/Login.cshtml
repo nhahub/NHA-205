@@ -9,7 +9,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="~/css/signin.css">
-    <script src="~/js/signin.js" defer></script>
     <title>CODEXLY - Sign in</title>
 </head>
 <body>
@@ -32,6 +31,7 @@
     <div class="container">
         <div class="left-panel">
             <form asp-controller="Account" asp-action="Login" method="post" class="login-form">
+                @Html.AntiForgeryToken()
                 <h1 class="form-title">welcome back</h1>
                 <p class="form-subtitle">please enter your details</p>
                 
