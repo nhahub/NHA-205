@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "H:\\Visual Studio Code Projects\\Account Test\\Account Test\\Account Test.csproj": {}
+    "C:\\Users\\SYSADMIN\\source\\repos\\DEPI-Graduation-Final\\nha-205\\Account Test.csproj": {}
   },
   "projects": {
-    "H:\\Visual Studio Code Projects\\Account Test\\Account Test\\Account Test.csproj": {
+    "C:\\Users\\SYSADMIN\\source\\repos\\DEPI-Graduation-Final\\nha-205\\Account Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\Visual Studio Code Projects\\Account Test\\Account Test\\Account Test.csproj",
+        "projectUniqueName": "C:\\Users\\SYSADMIN\\source\\repos\\DEPI-Graduation-Final\\nha-205\\Account Test.csproj",
         "projectName": "Account Test",
-        "projectPath": "H:\\Visual Studio Code Projects\\Account Test\\Account Test\\Account Test.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "H:\\Visual Studio Code Projects\\Account Test\\Account Test\\obj\\",
+        "projectPath": "C:\\Users\\SYSADMIN\\source\\repos\\DEPI-Graduation-Final\\nha-205\\Account Test.csproj",
+        "packagesPath": "C:\\Users\\SYSADMIN\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\SYSADMIN\\source\\repos\\DEPI-Graduation-Final\\nha-205\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\SYSADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -25,6 +25,7 @@
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -65,7 +66,7 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.22, )"
+              "version": "[8.0.0, )"
             }
           },
           "imports": [
@@ -87,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
